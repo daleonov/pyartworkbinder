@@ -30,7 +30,19 @@ def fDownload(sSource, sTarget):
     '''
     if sSource != ERROR_MSG:
         fSourceImg = ul.urlopen(sSource)
-        fTargetImg = open(sTarget, "wb")
+        try:
+            fTargetImg = open(sTarget, "wb")
+        # A silly workaround for image filw write permissions
+        # Happens a lot, so needs to be solved
+        except IOError:
+            from random import randint
+            import os.path
+            nFileSuffix = randint(100,500)
+            fTargetImg = open( \
+                os.path.splitext(sTarget)[0] + \
+                '_' + str(nFileSuffix) + \
+                os.path.splitext(sTarget)[1],\
+                 "wb")
         sData = fSourceImg.read()
         fTargetImg.write(sData)
         fTargetImg.close()

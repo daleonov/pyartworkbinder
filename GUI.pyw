@@ -1,4 +1,4 @@
-import wx
+﻿import wx
 import os.path as op
 import os
 import pyBinder as pb
@@ -26,7 +26,7 @@ def fProcessTracks(lFileNames, wFrame):
     sLfmResult=pb.fQueryLfm(sLfmQuery)
 
     wFrame.fSetGauge('Analysing Last.FM request...', 80)
-    sImgUrl=pb.fUnparseImgUrl(sLfmResult, pb.SIZE_300X300)
+    sImgUrl=pb.fUnparseImgUrl(sLfmResult, pb.SIZE_RAW)
 
     wFrame.fSetGauge('Downloading image...', 90)
     pb.fDownload(sImgUrl, sImageLocation)
