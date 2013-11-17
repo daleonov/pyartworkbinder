@@ -28,6 +28,10 @@ def fProcessTracks(lFileNames, wFrame):
     wFrame.fSetGauge('Analysing Last.FM request...', 80)
     sImgUrl=pb.fUnparseImgUrl(sLfmResult, pb.SIZE_RAW)
 
+    if sImgUrl == u'':
+        wFrame.fSetGauge('Sorry, image not found', 100)
+        return
+
     wFrame.fSetGauge('Downloading image...', 90)
     pb.fDownload(sImgUrl, sImageLocation)
 
